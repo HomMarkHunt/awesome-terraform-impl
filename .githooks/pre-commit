@@ -1,0 +1,6 @@
+terraform fmt -diff
+tflint
+
+for FILE in `git diff --diff-filter=d --staged --name-only`; do
+  git add $FILE
+done
