@@ -24,4 +24,8 @@ resource "aws_vpc" "example" {
 
 resource "aws_ecr_repository" "example" {
   name = "sample"
+
+  image_scanning_configuration {
+    scan_on_push = true
+  }
 }
