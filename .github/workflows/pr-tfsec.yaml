@@ -1,0 +1,22 @@
+name: pr-tfsec
+
+on: [pull_request]
+
+jobs:
+  tfsec:
+    name: tfsec
+    runs-on: ubuntu-latest
+
+    defaults:
+      run:
+        shell: bash
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: tfsec
+        uses: reviewdog/action-tfsec@master
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          fail_on_error: "true"
+          filter_mode: "nofilter"
