@@ -44,3 +44,10 @@ jobs:
         run: terraform plan | tfnotify -config .tfnotify/github.yaml plan
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: tfsec
+        uses: reviewdog/action-tfsec@master
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          fail_on_error: "true" # Fail action if errors are found
+          filter_mode: "nofilter" # Check all files, not just the diff
